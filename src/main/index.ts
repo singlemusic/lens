@@ -10,7 +10,6 @@ import { WindowManager } from "./window-manager";
 import { clusterStore } from "../common/cluster-store"
 import { tracker } from "./tracker"
 import { ClusterManager } from "./cluster-manager";
-import AppUpdater from "./app-updater"
 import { shellSync } from "./shell-sync"
 import { getFreePort } from "./port"
 import { mangleProxyEnv } from "./proxy-env"
@@ -34,9 +33,6 @@ const vmURL = (isDevelopment) ? `http://localhost:${process.env.ELECTRON_WEBPACK
 
 async function main() {
   await shellSync()
-
-  const updater = new AppUpdater()
-  updater.start();
 
   tracker.event("app", "start");
   protocol.registerFileProtocol('store', (request, callback) => {
